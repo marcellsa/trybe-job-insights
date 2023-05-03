@@ -94,4 +94,14 @@ def filter_by_salary_range(
     list
         Jobs whose salary range contains `salary`
     """
-    raise NotImplementedError
+    filter_salary_range = []
+    try:
+        for job in jobs:
+            min_salary = int(job["min_salary"])
+            max_salary = int(job["max_salary"])
+            if min_salary <= int(salary) <= max_salary:
+                filter_salary_range.append(job)
+    except TypeError:
+        raise ValueError("Não representa número válido")
+    finally:
+        return filter_salary_range
